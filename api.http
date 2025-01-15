@@ -1,0 +1,38 @@
+### Recuperar todo
+GET http://localhost:3000/movies
+
+### Recuperar por id
+GET http://localhost:3000/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+
+### Recuperar por genero
+GET http://localhost:3000/movies?genre=drama
+
+
+### Crear una pelicula con POST
+POST  http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "title": "The Shawshank Redemption xd",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "duration": 142,
+    "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+    "genre": [
+      "Fantasy"
+    ],
+    "rate": 0.5
+}
+
+
+### Actualizar una pelicula por id
+PATCH  http://localhost:3000/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+Content-Type: application/json
+
+{
+    "year": 2024
+}
+
+
+### delete
+DELETE http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
