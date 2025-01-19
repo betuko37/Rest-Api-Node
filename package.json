@@ -4,6 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "start:mysql": "nodemon server-mysql.js",
+    "start:local": "nodemon server-local.js",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
@@ -14,6 +16,8 @@
   "dependencies": {
     "cors": "2.8.5",
     "express": "4.21.2",
+    "mongodb": "6.12.0",
+    "mysql2": "^3.12.0",
     "zod": "3.24.1"
   },
   "devDependencies": {
