@@ -1,5 +1,5 @@
 import express, { json } from "express";
-import { corsMiddleware } from "./middlewares/cors.js";
+import { corsMiddleware, methodMiddleware } from "./middlewares/cors.js";
 import { createMovieRouter } from "./routes/movies_routes.js";
 
 
@@ -10,7 +10,8 @@ export const createApp = ({movieModel})=>{
   
   //middleware
   app.use(json())
-  app.use(corsMiddleware())
+  app.use(corsMiddleware()); // Aplica el CORS
+  app.use(methodMiddleware); // Bloquea métodos no permitidos
   app.use('/movies', createMovieRouter({movieModel}))
   
   // Usa el puerto definido en el entorno, o 3000 por defecto
