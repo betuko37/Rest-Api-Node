@@ -113,7 +113,29 @@ export class MovieModel {
   }
   
 
-  static async update ({ id, input }) {
-    // ejercicio fácil: crear el update
+  static async update({ id, input }) {
+    const {
+      title,
+      year,
+      duration,
+      director,
+      rate,
+      poster
+    } = input;
+  
+    // Actualizar la película por ID
+    const [result] = await connection.query(
+      `UPDATE movie
+      SET title = ?, year = ?, director = ?, duration = ?, poster = ?, rate = ?
+      WHERE id = UUID_TO_BIN(?);`,
+      [title, year, director, duration, poster, rate, id]
+    );
+  
+    if (result.affectedRows === 0) {
+      throw new Error('Movie not found');
+    }
+  
+    return { message: 'Movie updated successfully' };
   }
+  
 }
