@@ -1,7 +1,6 @@
 import express, { json } from "express";
-import { corsMiddleware } from "./middlewares/cors.js";
+import { corsMiddleware, blockWriteMethods } from "./middlewares/cors.js";
 import { createMovieRouter } from "./routes/movies_routes.js";
-import { MovieModel } from "./models/mysql/movie.js"
 
 
 export const createApp = ({movieModel})=>{
