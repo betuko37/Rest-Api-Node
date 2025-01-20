@@ -1,12 +1,10 @@
 import cors from 'cors';
 
-const ACCEPTED_ORIGINS = [
-  'http://localhost:3000',               // Si estás desarrollando en localhost
-  'https://tu-frontend.com',             // Tu dominio público del front-end
-  'https://rest-api-node-4ufv.onrender.com' // Tu propio dominio
+const ACCEPTED_ORIGINS = [           
+  'https://rest-api-node-4ufv.onrender.com' 
 ];
 
-export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
+export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => 
   cors({
     origin: (origin, callback) => {
       // Permitir si el origen está en la lista aceptada
@@ -14,8 +12,12 @@ export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
         return callback(null, true);
       }
 
-      // Bloquear orígenes no permitidos
+      // Permitir solicitudes sin origen (Postman, curl, etc.)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      // Bloquear cualquier otro origen no permitido
       return callback(new Error('Not allowed by CORS'));
     },
-    methods: ['GET'], // Solo permite GET en la configuración de CORS
   });
