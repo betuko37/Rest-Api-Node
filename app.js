@@ -12,6 +12,7 @@ export const createApp = ({movieModel})=>{
   //middleware
   app.use(json())
   app.use(corsMiddleware())
+  app.use(blockWriteMethods);
   app.use('/movies', createMovieRouter({movieModel}))
   
   // Usa el puerto definido en el entorno, o 3000 por defecto
