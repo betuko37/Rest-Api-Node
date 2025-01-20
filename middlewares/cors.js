@@ -1,30 +1,23 @@
 import cors from 'cors';
 
 const ACCEPTED_ORIGINS = [
-  'https://rest-api-node-4ufv.onrender.com', // Tu dominio
-];
+  'http://localhost:3000',
+  'http://127.0.0.1:5500',
+  'https://movies.com'
+]
 
-export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
-  cors({
+
+export const corsMiddleware = ({acceptedOrigins = ACCEPTED_ORIGINS} = {}) => cors({
     origin: (origin, callback) => {
-      // Permitir solicitudes GET desde cualquier origen
-      if (origin && (acceptedOrigins.includes(origin) || !origin)) {
-        return callback(null, true); // Permitir cualquier origen para GET
+      
+      if (acceptedOrigins.includes(origin)) {
+        return callback(null, true)
       }
-
-      // Bloquear cualquier otro origen para otros métodos
-      return callback(new Error('Not allowed by CORS'));
-    },
-    methods: ['GET'], // Permitir solo el método GET
-  });
-
-// Middleware para bloquear POST, PUT, DELETE, y otros métodos
-export const blockWriteMethods = (req, res, next) => {
-  const blockedMethods = ['POST', 'PUT', 'DELETE', 'PATCH'];
-
-  // Si el método es uno de los bloqueados, respondemos con error
-  if (blockedMethods.includes(req.method)) {
-    return res.status(405).json({ message: 'Método no permitido' });
-  }
-  next();
-};
+  
+      if (!origin) {
+        return callback(null, true)
+      }
+  
+      return callback(new Error('Not allowed by CORS'))
+    }
+  })
