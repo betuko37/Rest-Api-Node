@@ -9,7 +9,7 @@ GET http://localhost:3000/movies?genre=drama
 
 
 ### Crear una pelicula con POST
-POST  http://localhost:3000/movies
+POST  https://rest-api-node-4ufv.onrender.com/movies
 Content-Type: application/json
 
 {
