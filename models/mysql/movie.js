@@ -99,9 +99,19 @@ export class MovieModel {
     return movies[0]
   }
 
-  static async delete ({ id }) {
-    // ejercio fácil: crear el delete
+  static async delete({ id }) {
+    // La consulta DELETE correcta para borrar por ID
+    const [result] = await connection.query(
+      `DELETE FROM movie WHERE id = UUID_TO_BIN(?);`, [id]
+    );
+  
+    if (result.affectedRows === 0) {
+      throw new Error('Movie not found');
+    }
+  
+    return { message: 'Movie deleted successfully' };
   }
+  
 
   static async update ({ id, input }) {
     // ejercicio fácil: crear el update
