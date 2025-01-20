@@ -30,7 +30,12 @@ PATCH https://rest-api-node-4ufv.onrender.com/movies/c5c58cfb-d617-11ef-b43f-cec
 Content-Type: application/json
 
 {
-    "year": 2024
+  "title": "hola",
+  "year": 2010,
+  "director": "Cristopher Nolan",
+  "duration": 180,
+  "poster": "https://m.media-amazon.com/images/I/91Rc8cAmnAL._AC_UF1000,1000_QL80_.jpg",
+  "rate": 2.4
 }
 
 

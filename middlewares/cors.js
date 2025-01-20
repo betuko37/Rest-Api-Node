@@ -25,7 +25,7 @@ export const corsMiddleware = ({acceptedOrigins = ACCEPTED_ORIGINS} = {}) => cor
 
   // Middleware para bloquear POST y otros métodos no deseados
 export const methodMiddleware = (req, res, next) => {
-  if (req.method === 'POST' || req.method === 'DELETE' || req.method === 'OPTIONS') {
+  if (req.method === 'POST' || req.method === 'DELETE' ||  req.method === 'PATCH' || req.method === 'OPTIONS') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
   next();
